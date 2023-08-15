@@ -1,0 +1,49 @@
+openapi: 3.0.3
+info:
+  title: Onboarding API
+  version: 1.1
+  description: Moi STD22027
+servers:
+  - url: https://STD22027
+paths:
+  /students:
+    get:
+      responses:
+        '200':
+          description: ' '
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Rakoto
+                  birthdate:
+                    type: string
+                    example: 2017-05-06
+        '500':
+          description: Internal Server Error
+    post:
+      responses:
+        '200':
+          description: create a new student in the store
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Rasoa
+                  birthdate:
+                    type: string
+                    example: 2014-10-20
+        '500':
+          description: Internal Server Error
