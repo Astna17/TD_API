@@ -1,0 +1,110 @@
+openapi: 3.0.3
+info:
+  title: Teacher API
+  description: STD22027
+  version: 1.1
+servers:
+  - url: https://Teachers.STD22027.com
+paths:
+  /teachers:
+    post:
+      summary: Create a new teacher
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                  example: Toky
+                lastName:
+                  type: string
+                  example: Ramarozaka
+                courses:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      courseName:
+                        type: string
+                        example: Algo
+                      courseCode:
+                        type: string
+                        example: PROG1
+                      courseDuration:
+                        type: string
+                        example: 2h
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                example: [Toky, Ramarozaka, Algo, Prog1, 2h]
+        '500':
+          description: Internal server error
+
+    get:
+      summary: Find the list of teacher
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                  example: Harry
+                lastName:
+                  type: string
+                  example: Rakotondratompo
+                courses:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      courseName:
+                        type: string
+                        example: system and
+                      courseCode:
+                        type: string
+                        example: Sys1
+                      courseDuration:
+                        type: string
+                        example: 2h
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                example: [Harry, Rakotondratompo, system, sys1, 2h]
+        '500' :
+          description: Internal server error
+
+components:
+  schemas:
+    Teachers:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        courses:
+          type: array
+          items:
+            type: object
+            properties:
+              courseName:
+                type: string
+              courseCode:
+                type: string
+              courseDuration:
+                type: string
+
