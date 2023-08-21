@@ -35,7 +35,7 @@ paths:
                         example: PROG1
                       courseDuration:
                         type: string
-                        example: 2h
+                        example: 90h
       responses:
         '200':
           description: success
@@ -43,7 +43,7 @@ paths:
             application/json:
               schema:
                 type: array
-                example: [Toky, Ramarozaka, Algo, Prog1, 2h]
+                example: [Toky, Ramarozaka, Algo, Prog1, 90h]
         '500':
           description: Internal server error
 
@@ -75,7 +75,7 @@ paths:
                         example: Sys1
                       courseDuration:
                         type: string
-                        example: 2h
+                        example: 90h
       responses:
         '200':
           description: success
@@ -83,7 +83,7 @@ paths:
             application/json:
               schema:
                 type: array
-                example: [Harry, Rakotondratompo, system, sys1, 2h]
+                example: [Harry, Rakotondratompo, system, sys1, 90h]
         '500' :
           description: Internal server error
 
@@ -94,8 +94,10 @@ components:
       properties:
         firstName:
           type: string
+          example: Toky
         lastName:
           type: string
+          example: Ramarozaka
         courses:
           type: array
           items:
@@ -103,8 +105,11 @@ components:
             properties:
               courseName:
                 type: string
+                example: Algorithmique 
               courseCode:
                 type: string
+                example: PROG1
               courseDuration:
                 type: string
+                example: 90h
 
