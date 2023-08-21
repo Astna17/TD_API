@@ -14,41 +14,38 @@ paths:
       tags:
         - Students
       summary: Create a student in the store
-      description: creat a student
-      parameters:
-        - name: id
-          in: path
-          schema:
-            type: integer
-            example: 1
-            required: true
-        - name: name
-          in: path
-          schema:
-            type: string
-            example: Rakoto
-            required: true
-        - name: birthDate
-          in: path
-          schema:
-            type: string
-            example: 2000-01-01
-            required: true
+      description: Create a student
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  example: 1
+                name:
+                  type: string
+                  example: Rakoto
+                birthDate:
+                  type: string
+                  example: 2000-01-01
       responses:
-        200:
-          description: successful operation
+        '200':
+          description: Successful operation
           content:
             application/json:
               schema:
                 type: array
                 example: [1, Rakoto, 2000-01-01]
-
-        500:
+        '500':
           description: Internal server error
+
     get:
       tags:
         - Students
-      operationId: get student by Id
+      operationId: getStudentById
       summary: Find student by Id
       description: Find a student
       parameters:
@@ -59,22 +56,21 @@ paths:
             type: integer
             format: int64
       responses:
-        200:
-          description: successful operation
+        '200':
+          description: Successful operation
           content:
             application/json:
               schema:
-                items: 
-                  - $ref: 
-
-        500:
+                $ref: '#/components/schemas/Student'
+        '500':
           description: Internal server error
+
     delete:
       tags:
         - Students
-      operationId: deleteStudents
+      operationId: deleteStudent
       summary: Deletes a student
-      description: delete a student
+      description: Delete a student
       parameters:
         - name: id
           in: path
@@ -82,39 +78,55 @@ paths:
             type: integer
             required: true
       responses:
-        200:
+        '200':
           description: Resource deleted
           content:
             application/json:
               schema:
                 type: integer
                 example: 1
-        500:
+        '500':
           description: Internal server error
+
     put:
       tags:
         - Students
-      operationId: updateStudent or createNewStudent
-      summary: update student or create new student
-      description: update a student
+      operationId: updateOrCreateStudent
+      summary: Update student or create new student
+      description: Update a student
       parameters:
         - name: name
           in: path
       requestBody:
-        description: student to be created
+        description: Student to be created or updated
+        required: true
         content:
           application/json:
             schema:
-              items: 
-                $ref: 
-        required: true
+              $ref: '#/components/schemas/Student'
       responses:
-        200:
-          description: created or update student
+        '200':
+          description: Created or updated student
           content:
             application/json:
               schema:
                 type: string
                 example: Rasoa
-        500:
+        '500':
           description: Internal server error
+
+components:
+  schemas:
+    Student:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Rakoto
+        birthDate:
+          type: string
+          example: 2000-01-01
+  
